@@ -3,7 +3,7 @@
  * Plugin Name: Get to Tekserve
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcode for Google Maps API 3 directions to Tekserve
- * Version: 1.0
+ * Version: 1.1
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
@@ -30,6 +30,11 @@ function gettotekserve() {
 	return '
 	<div id="get-to-tekserve">
 	<div id="panel">
+		<div id="mapzoom">
+			<p><b>Zoom:</b></p>
+			<span class="zoomin">+</span>
+			<span class="zoomout">-</span>
+		</div>
 		<div><b>Mode of Travel: </b></div>
 		<select id="mode" style="margin-bottom: 1em;">
 			<option value="DRIVING">Driving</option>
@@ -55,6 +60,11 @@ function gettotekservedrawer() {
 	<div class="drawer">
 	<div id="get-to-tekserve" class="collapseomatic_content" style="display: none;">
 	<div id="panel">
+		<div id="mapzoom">
+			<p><b>Zoom:</b></p>
+			<span class="zoomin">+</span>
+			<span class="zoomout">-</span>
+		</div>
 		<div><b>Mode of Travel: </b></div>
 		<select id="mode" style="margin-bottom: 1em;">
 			<option value="DRIVING">Driving</option>

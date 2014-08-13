@@ -68,7 +68,7 @@
 	border-radius: 6px;
 	font-size: 10px;
 	padding: 4px 1em;
-	color: #004d72;
+	color: #fff;
 	text-transform: uppercase;
 	width: 60%;
 	display: block;
@@ -86,6 +86,36 @@
 	float: right;
 	height: 45%;
 	overflow: auto;
+}
+
+#mapzoom {
+	position: absolute;
+	top: .25em;
+	right: 2em;
+}
+
+#mapzoom p {
+	margin-bottom: 0;
+	text-align: center;
+}
+
+#mapzoom .zoomin,
+#mapzoom .zoomout {
+	display: inline-block;
+	border-radius: 6px;
+	background-color: #40a8c9;
+	color: #fff;
+	font-weight: 900;
+	height: 1.5em;
+	width: 1.5em;
+	text-align: center;
+	line-height: 1.5em;
+}
+
+#mapzoom .zoomin:hover,
+#mapzoom .zoomout:hover {
+	background-color: #f36f37;
+	cursor: pointer;
 }
 
 @media print {

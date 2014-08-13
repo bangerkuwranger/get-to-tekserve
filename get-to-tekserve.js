@@ -1,3 +1,4 @@
+	var $j = jQuery; 
 	var geocoder;
 	var map;
 	var tekMarker;
@@ -11,6 +12,30 @@
 	var polylineOptionsActual;
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
+		// Try HTML5 geolocation
+	  	if(navigator.geolocation) {
+	  		var usrloc;
+			navigator.geolocation.getCurrentPosition(function(position) {
+				usrloc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+// 				usrloc = new google.maps.LatLng(parseFloat(40.723892), parseFloat(-73.989977));
+			});
+			geocoder.geocode({'latLng': usrloc}, function(results, status) {
+				console.log(usrloc);
+				console.log(status);
+				console.log(results);
+// 				if (status == google.maps.GeocoderStatus.OK) {
+				  if (results[0]) {
+					$j('#start-address').val(results[0].formatted_address);
+				  } 
+// 				  else {
+// 					alert('No results found');
+// 				  }
+// 				} 
+// 				else {
+// 				  alert('Geocoder failed due to: ' + status);
+// 				}
+			});
+		}
 		var mapZoom = 16;
 		mapAddress = "119 W 23rd St. New York, NY 10011";
 		mapAddressLat = 40.7433349;
@@ -148,10 +173,9 @@
 			styles: mapStyles,
 			draggable: false,
 			scrollwheel: false,
-			zoomControl: true,
-			zoomControlOptions: {
-			  style: google.maps.ZoomControlStyle.SMALL
-			}
+			zoomControl: false,
+			rotateControl: false,
+			streetViewControl: false
 		};
 		var contentString = "<div id=\'content\' style=\'border: 2px solid white; min-height: 300px; min-width: 300px;\'>"+
 			"<div id=\'logo\' style=\'background-color: #40a8c9; background-image: url(teklogo.svg); background-repeat: no-repeat; background-size: contain; width: 100%; height: 25%;\'>"+
@@ -267,6 +291,20 @@
 			$j('#get-to-tekserve').addClass('initialized')
 		}
 	}
+	
+	//zoom in or out
+	function extMapZoom(whichWay) {
+	
+		var zoomval = map.getZoom();
+		if (whichWay=="out") {
+			zoomval--;
+		}
+		else {
+			zoomval++;
+		}
+		map.setZoom(zoomval) 
+	
+	}
 
 // 	window.onload = loadScript;
 
@@ -286,3 +324,26 @@
 		}
 	  });
 	}
+	
+	//code to make map drawers act like other normal drawers
+	$j('#trigger-get-directions').click(function() {
+		$j('#get-to-tekserve').slideToggle();
+	});
+	var group = $j('#trigger-get-directions').attr('rel');
+	$j("[rel="+group+"]").each(function() {
+		var thisID = $j(this).attr('id');
+		if(thisID != 'trigger-get-directions') {    
+			$j(this).click(function() {
+				$j('#get-to-tekserve').slideUp();
+				$j('#trigger-get-directions').removeClass('colomat-close');
+			});
+		}
+	});
+	
+	//visible zoom buttons binding
+	$j('#mapzoom .zoomin').click(function() {
+		extMapZoom('in');
+	});
+	$j('#mapzoom .zoomout').click(function() {
+		extMapZoom('out');
+	});
