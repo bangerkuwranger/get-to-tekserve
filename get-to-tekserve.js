@@ -17,23 +17,11 @@
 	  		var usrloc;
 			navigator.geolocation.getCurrentPosition(function(position) {
 				usrloc = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-// 				usrloc = new google.maps.LatLng(parseFloat(40.723892), parseFloat(-73.989977));
 			});
 			geocoder.geocode({'latLng': usrloc}, function(results, status) {
-				console.log(usrloc);
-				console.log(status);
-				console.log(results);
-// 				if (status == google.maps.GeocoderStatus.OK) {
-				  if (results[0]) {
-					$j('#start-address').val(results[0].formatted_address);
-				  } 
-// 				  else {
-// 					alert('No results found');
-// 				  }
-// 				} 
-// 				else {
-// 				  alert('Geocoder failed due to: ' + status);
-// 				}
+			  if (results[0]) {
+				$j('#start-address').val(results[0].formatted_address);
+			  } 
 			});
 		}
 		var mapZoom = 16;
@@ -328,6 +316,7 @@
 	//code to make map drawers act like other normal drawers
 	$j('#trigger-get-directions').click(function() {
 		$j('#get-to-tekserve').slideToggle();
+		$j('#target-department-directory').slideUp();
 	});
 	var group = $j('#trigger-get-directions').attr('rel');
 	$j("[rel="+group+"]").each(function() {
