@@ -3,14 +3,14 @@
  * Plugin Name: Get to Tekserve
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcode for Google Maps API 3 directions to Tekserve
- * Version: 1.1
+ * Version: 1.2
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
  */
 /*
 The MIT License (MIT)
-Copyright (c) 2013 Chad A. Carino
+Copyright (c) 2014 Chad A. Carino
  
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
  
@@ -24,10 +24,12 @@ function gettotekserve_enqueue() {
 	wp_enqueue_script( 'get-to-tekserve-js', plugins_url().'/get-to-tekserve/get-to-tekserve.js', array(), '1.0.0', true );
 }
 
-add_action( 'wp_enqueue_scripts', 'gettotekserve_enqueue' );
+
 
 function gettotekserve() {
+	gettotekserve_enqueue();
 	return '
+	<a id="directions" name="directions"></a>
 	<div id="get-to-tekserve">
 	<div id="panel">
 		<div id="mapzoom">
@@ -56,7 +58,9 @@ function gettotekserve() {
 add_shortcode( 'get_to_tekserve', 'gettotekserve' );
 
 function gettotekservedrawer() {
+	gettotekserve_enqueue();
 	return '
+	<a id="directions" name="directions"></a>
 	<div class="drawer">
 	<div id="get-to-tekserve" class="collapseomatic_content" style="display: none;">
 	<div id="panel">

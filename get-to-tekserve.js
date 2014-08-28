@@ -317,6 +317,17 @@
 	$j('#trigger-get-directions').click(function() {
 		$j('#get-to-tekserve').slideToggle();
 		$j('#target-department-directory').slideUp();
+		if($j(this).hasClass('colomat-close')) {
+			var targhash = '#trigger-get-directions';
+		}
+		else {
+			var targhash = "#directions";
+		}
+		window.scrollTo(0, 0);
+		$j('#nav').addClass('floating-menu');
+		var offset = -( parseInt( $j('#nav').outerHeight(true) ) );
+		window.location.href = targhash;
+		window.scrollBy(0, offset);
 	});
 	var group = $j('#trigger-get-directions').attr('rel');
 	$j("[rel="+group+"]").each(function() {
