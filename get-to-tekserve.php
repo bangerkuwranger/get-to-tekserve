@@ -52,6 +52,11 @@ function gettotekserve() {
 	<hr style="visibility: hidden; clear: both;"/>
 	<div id="directions-panel"></div>
 	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			getToTekserveLoadScript();
+		});
+	</script>
 	';
 }
 
