@@ -3,7 +3,7 @@
  * Plugin Name: Get to Tekserve
  * Plugin URI: https://github.com/bangerkuwranger
  * Description: Custom shortcode for Google Maps API 3 directions to Tekserve
- * Version: 1.3
+ * Version: 1.4
  * Author: Chad A. Carino
  * Author URI: http://www.chadacarino.com
  * License: MIT
@@ -18,15 +18,21 @@ The above copyright notice and this permission notice shall be included in all c
  
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
+
+
+
 //enqueue css & js
 function gettotekserve_enqueue() {
+
 	wp_enqueue_style( 'get-to-tekserve-style', plugins_url().'/get-to-tekserve/get-to-tekserve.css' );
 	wp_enqueue_script( 'get-to-tekserve-js', plugins_url().'/get-to-tekserve/get-to-tekserve.js', array(), '1.0.0', true );
-}
+
+}	//end gettotekserve_enqueue()
 
 
 
 function gettotekserve() {
+
 	gettotekserve_enqueue();
 	return '
 	<a id="directions" name="directions"></a>
@@ -58,11 +64,17 @@ function gettotekserve() {
 		});
 	</script>
 	';
-}
+	
+}	//end gettotekserve()
 
 add_shortcode( 'get_to_tekserve', 'gettotekserve' );
 
+
+
+
+
 function gettotekservedrawer() {
+
 	gettotekserve_enqueue();
 	return '
 	<a id="directions" name="directions"></a>
@@ -91,6 +103,7 @@ function gettotekservedrawer() {
 	</div>
 	</div>
 	';
-}
+
+}	//end gettotekservedrawer()
 
 add_shortcode( 'get_to_tekserve_drawer', 'gettotekservedrawer' );
